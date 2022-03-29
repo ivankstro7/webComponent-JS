@@ -3,17 +3,40 @@ class productCard extends HTMLElement {
       super();
       this.attachShadow({ mode: "open" });
     }
+    static get observedAttributes() {
+        return ["img", "img-model", "title", "price", "detail", "description"];
+      }
+      attributeChangedCallback(attr, oldVal, newVal) {
+        if (attr === "img") {
+          this.img = newVal;
+        }
+        if (attr === "img-model") {
+          this.imgModel = newVal;
+        }
+        if (attr === "title") {
+          this.title = newVal;
+        }
+        if (attr === "description") {
+          this.description = newVal;
+        }
+        if (attr === "price") {
+          this.price = newVal;
+        }
+        if (attr === "detail") {
+            this.detail = newVal;
+          }
+      }
     getTemplate() {
       const template = document.createElement("template");
       template.innerHTML = `
         <section class="container-card">
             <div class="card-bg">
-                <img src="./imgs/bg.jpg" alt="">
+                <img src="${this.img}" alt="hero image">
             </div>
             <div class="container-body">
                 <div class="card-body">
                     <div class="body-image">
-                        <img src="./imgs/model.png" alt="">
+                        <img src="${this.imgModel}" alt="image model">
                     </div>                
                     <div class="body-heading">
                         <h2>PRINCE ULTEGRA 11S</h2>
